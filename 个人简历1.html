@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 100%;
+            max-width: 702px;
+            border-collapse: collapse;
+            border: 1px solid #aaa;
+            background-image: url("../image/ye.jpg");
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        table:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        td {
+            border: 1px solid #aaa;
+            padding: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        td:hover {
+            background-color: rgba(204, 204, 204, 0.2);
+        }
+
+        tr {
+            text-align: center;
+        }
+
+        .stuff {
+            background-color: #c0c0c0;
+            font-weight: 600;
+            color: #333;
+        }
+
+        caption {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 90%;
+            }
+
+            td {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>个人简历</caption>
+        <tr>
+            <td class="stuff">姓名</td>
+            <td>薛景文</td>
+            <td class="stuff">性别</td>
+            <td>男</td>
+            <td class="stuff">年龄</td>
+            <td>18</td>
+            <td rowspan="3">
+                <img src="薛景文.jpg" alt="个人照片" style="width: 100%; height: auto;">
+            </td>
+        </tr>
+        <tr>
+            <td class="stuff">籍贯</td>
+            <td>山东临沂</td>
+            <td class="stuff">联系电话</td>
+            <td>18660944866</td>
+            <td class="stuff">电子邮箱</td>
+            <td>1635214718@qq.com</td>
+        </tr>
+        <tr>
+            <td class="stuff">学历</td>
+            <td>本科</td>
+            <td class="stuff">健康状况</td>
+            <td>正常</td>
+            <td class="stuff">婚姻状况</td>
+            <td>未婚</td>
+        </tr>
+        <tr>
+            <td class="stuff">求职意向</td>
+            <td colspan="3"></td>
+            <td class="stuff">专业</td>
+            <td colspan="2">软件工程</td>
+        </tr>
+        <tr>
+            <td class="stuff">技能证书</td>
+            <td colspan="3">全能</td>
+            <td class="stuff">毕业院校</td>
+            <td colspan="2">鲁东大学</td>
+        </tr>
+        <tr height="90">
+            <td class="stuff">个人特长与爱好</td>
+            <td colspan="7">学习</td>
+        </tr>
+        <tr>
+            <td class="stuff">项目经历</td>
+            <td colspan="7"></td>
+        </tr>
+        <tr>
+            <td class="stuff">自我评价</td>
+            <td colspan="7">
+                <p>本人具备扎实的专业知识基础，通过系统学习软件工程相关课程，掌握了编程、算法设计等专业技能。在学习过程中，我始终保持积极主动的态度，不断探索和钻研前沿技术，深入理解软件开发的流程和规范。
+
+在实践方面，我积极参与校内软件项目开发，曾负责校园管理系统的前端界面设计与部分功能实现。通过这个项目，我不仅提高了自己的编程实践能力，还学会了如何与团队成员有效沟通和协作，共同解决项目中遇到的技术难题。
+
+在个人品质方面，我具有较强的责任心和团队合作精神。对待工作认真负责，注重细节，能够确保代码的高质量和项目的稳定性。同时，我善于与他人合作，能够充分发挥团队的优势，共同实现项目目标。此外，我还具备较强的学习能力和适应能力，能够快速掌握新知识和新技能，适应不同的软件开发环境和需求。
+
+未来，我希望能够在软件开发领域继续发展，不断提升自己的专业能力和综合素质。我相信，凭借自己的努力和团队的支持，我能够为公司的软件项目开发做出积极贡献。</p>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>  
