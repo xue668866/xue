@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* 导航栏样式 */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+       .content {
+            display: none;
+            padding: 20px;
+        }
+
+        #center-icon {
+            position: relative;
+            width: 500px; 
+            height: 500px;
+            background: url('your_image_path.jpg'); 
+            background-size: cover;
+            margin: 50px auto;
+        }
+
+        .knowledge-point {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: #ccc; /* 修改背景色为浅灰色，符合图中样式 */
+            padding: 10px;
+            color: #000; /* 文字颜色改为黑色 */
+        }
+
+        #point1 {
+            top: 30px;
+            left: 30px;
+        }
+
+        #point2 {
+            bottom: 30px;
+            left: 30px;
+        }
+
+        #point3 {
+            bottom: 30px;
+            right: 30px;
+        }
+
+        /* 新增图片样式 */
+        #center-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px; /* 可根据需要调整图片大小 */
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* 题目（2）相关样式 */
+        #news-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #left-news {
+            width: 60%;
+        }
+
+       .news-item {
+            margin-bottom: 20px;
+        }
+
+       .news-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        #right-recommend {
+            width: 35%;
+        }
+
+       .recommend-item {
+            margin-bottom: 10px;
+        }
+
+       .recommend-item img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <title>合并题目网页</title>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li><a href="#topic1">定位展示知识点视图</a></li>
+            <li><a href="#topic2">新闻资讯网页</a></li>
+        </ul>
+    </nav>
+
+    <!-- 题目（1）内容 -->
+    <div id="topic1" class="content">
+        <div id="center-icon">
+            <div class="knowledge-point" id="point1">
+                <h3>HTML基础和HTML5</h3>
+                <ul>
+                    <li>HTML标签与属性</li>
+                    <li>HTML5多媒体（视频和音频）</li>
+                    <li>HTML5图像标签（画布和SVG）</li>
+                    <li>HTML5地理定位</li>
+                    <li>HTML5表单</li>
+                </ul>
+            </div>
+            <div class="knowledge-point" id="point2">
+                <h3>CSS基础和CSS3</h3>
+                <ul>
+                    <li>CSS选择器</li>
+                    <li>CSS样式</li>
+                    <li>CSS盒模型与定位</li>
+                    <li>CSS3 2D与3D转换</li>
+                    <li>CSS3动画</li>
+                    <li>CSS3边框效果</li>
+                </ul>
+            </div>
+            <div class="knowledge-point" id="point3">
+                <h3>JavaScript</h3>
+                <ul>
+                    <li>数据类型</li>
+                    <li>运算符</li>
+                    <li>基础函数</li>
+                    <li>事件处理</li>
+                    <li>BOM对象</li>
+                    <li>DOM对象</li>
+                    <li>JS特效</li>
+                </ul>
+            </div>
+            <!-- 新增图片元素 -->
+            <img id="center-image" src="1.jpg" alt="Center Image">
+        </div>
+    </div>
+
+    <!-- 题目（2）内容 -->
+    <div id="topic2" class="content">
+        <h4>频道：科技 > 太空探测</h4>
+        <div id="news-content">
+            <div id="left-news">
+                <div class="news-item">
+                    <h4>飞行了200多亿公里的旅行者1号，为何不会撞上太空中的小行星</h4>
+                    <img src="2.jpg" alt="新闻图片1"> <!-- 替换为实际图片路径 -->
+                    <p>作者：XXX</p>
+                </div>
+                <div class="news-item">
+                    <h4>欧洲探测器从4亿公里外传回多幅照片</h4>
+                    <img src="3.jpg" alt="新闻图片2"> <!-- 替换为实际图片路径 -->
+                    <p>作者：XXX</p>
+                </div>
+                <div class="news-item">
+                    <h4>为什么太空没有氧气，陨石却能够燃烧</h4>
+                    <img src="4.jpg" alt="新闻图片3"> <!-- 替换为实际图片路径 -->
+                    <p>作者：XXX</p>
+                </div>
+            </div>
+            <div id="right-recommend">
+                <h4>热文推荐</h4>
+                <div class="recommend-item">
+                    <a href="#">研究表明：人类的自然寿命为120岁</a>
+                    <img src="5.jpg" alt="推荐图片1"> <!-- 替换为实际图片路径 -->
+                </div>
+                <div class="recommend-item">
+                    <a href="#">日偏食下的美丽瞬间，一个快门，记录一生，立马千山</a>
+                    <img src="6.jpg" alt="推荐图片2"> <!-- 替换为实际图片路径 -->
+                </div>
+                <div class="recommend-item">
+                    <a href="#">俗语“八月十二雨一场，四季无灾殃”，一探究竟</a>
+                    <img src="7.jpg" alt="推荐图片3"> <!-- 替换为实际图片路径 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取所有导航链接和内容区域
+        const links = document.querySelectorAll('nav ul li a');
+        const contents = document.querySelectorAll('.content');
+
+        // 为链接添加点击事件监听器
+        links.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 隐藏所有内容区域
+                contents.forEach(content => content.style.display = 'none');
+                // 显示对应内容区域
+                const targetId = link.getAttribute('href').substring(1);
+                const targetContent = document.getElementById(targetId);
+                targetContent.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+        });
+    </script>
+</body>
+
+</html>
+    
