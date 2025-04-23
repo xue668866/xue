@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简历 </title>
     <style>
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +38,6 @@
             transform: translateY(-5px);
         }
 
-        /* 标题栏 */
         .header-section {
             text-align: center;
             padding: 30px 20px;
@@ -65,7 +63,6 @@
             margin-bottom: 5px;
         }
 
-        /* 个人信息板块 */
         .info-section {
             display: grid;
             grid-template-columns: 3fr 2fr;
@@ -125,7 +122,6 @@
             transform: rotate(15deg);
         }
 
-        /* 板块通用样式 */
         .section {
             padding: 30px;
             background: #f8f9fa;
@@ -151,7 +147,6 @@
             transform: rotate(-15deg) scale(1.1);
         }
 
-        /* 表单样式 */
         .form-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -184,7 +179,6 @@
             box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
         }
 
-        /* 按钮样式 */
         .action-btn {
             text-align: center;
             padding: 20px 30px;
@@ -209,7 +203,6 @@
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
         }
 
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .info-section {
                 grid-template-columns: 1fr;
@@ -220,22 +213,18 @@
             }
         }
     </style>
-    <!-- 引入字体图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
     <div class="resume-container">
-        <!-- 头部信息 -->
         <div class="header-section">
             <i class="fas fa-user-tie header-icon"></i>
             <h1 class="main-title">个人简历</h1>
 
         </div>
 
-        <!-- 主体内容 -->
         <div class="info-section">
-            <!-- 基础信息 -->
             <div class="info-list">
                 <div class="info-item">
                     <i class="fas fa-user info-icon"></i>
@@ -263,13 +252,11 @@
                 </div>
             </div>
 
-            <!-- 照片区域 -->
             <div class="photo-box">
                 <img src="薛景文.jpg" alt="个人照片" class="profile-img">
             </div>
         </div>
 
-        <!-- 个人特长与爱好 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-star section-icon"></i>
@@ -279,7 +266,6 @@
                 style="height: 120px; resize: vertical;"></textarea>
         </div>
 
-        <!-- 求职意向 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-briefcase section-icon"></i>
@@ -304,7 +290,6 @@
             </div>
         </div>
 
-        <!-- 教育背景 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-graduation-cap section-icon"></i>
@@ -330,7 +315,6 @@
             </div>
         </div>
 
-        <!-- 健康与婚姻状况板块 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-heartbeat section-icon"></i>
@@ -356,7 +340,6 @@
             </div>
         </div>
 
-        <!-- 技能证书 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-certificate section-icon"></i>
@@ -383,7 +366,6 @@
             </div>
         </div>
 
-        <!-- 项目经历 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-project-diagram section-icon"></i>
@@ -393,7 +375,6 @@
                 style="height: 120px; resize: vertical;"></textarea>
         </div>
 
-        <!-- 自我评价 -->
         <div class="section">
             <div class="section-title">
                 <i class="fas fa-user-check section-icon"></i>
@@ -409,7 +390,6 @@
                 style="height: 180px; resize: vertical;"></textarea>
         </div>
 
-        <!-- 保存按钮 -->
         <div class="action-btn">
             <button class="save-btn" onclick="saveResume()">
                 <i class="fas fa-save"></i> 保存简历
@@ -419,10 +399,11 @@
 
     <script>
         function saveResume() {
-            alert("简历已保存到本地\n当前版本：清凉夏日动态版");
-            // 实际可添加本地存储或后端提交逻辑
+            alert("简历已保存到本地\n");
         }
     </script>
 </body>
+
+</html>
 
 </html>
