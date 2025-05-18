@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七彩霓虹灯</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neonRed: '#FF3333',
+                        neonOrange: '#FF9933',
+                        neonYellow: '#FFFF33',
+                        neonGreen: '#33FF33',
+                        neonBlue: '#3333FF',
+                        neonIndigo: '#9933FF',
+                        neonViolet: '#FF33FF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .light-transition {
+                transition: all 0.5s ease;
+            }
+            .light-shadow {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            }
+            .circle-container {
+                position: relative;
+                width: 300px; /* 圆的直径 */
+                height: 300px; /* 圆的直径 */
+                margin: 0 auto;
+            }
+            .light-position {
+                position: absolute;
+                transform-origin: center;
+                transition: transform 0.5s ease;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="text-center mb-8">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-2">七彩霓虹灯</h1>
+        <p class="text-gray-400 text-lg">七个灯围成圆形排列，颜色各不相同且循环变化</p>
+    </div>
+    
+    <div id="circle-container" class="circle-container mb-12">
+        <!-- 霓虹灯将通过JavaScript动态生成 -->
+    </div>
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button id="start-btn" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center">
+            <i class="fa fa-play mr-2"></i> 开始
+        </button>
+        <button id="stop-btn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center">
+            <i class="fa fa-stop mr-2"></i> 停止
+        </button>
+        <button id="reset-btn" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center">
+            <i class="fa fa-refresh mr-2"></i> 重置
+        </button>
+    </div>
+    
+    <footer class="mt-auto text-center text-gray-500 py-4">
+        <p>实验7: 用定时器实现闪烁的七彩霓虹灯</p>
+    </footer>
+
+    <script>
+        // 定义七种霓虹灯光的颜色
+        const colors = [
+            'neonRed',
+            'neonOrange',
+            'neonYellow',
+            'neonGreen',
+            'neonBlue',
+            'neonIndigo',
+            'neonViolet'
+        ];
+        
+        // 定义对应的RGB值
+        const rgbColors = [
+            'rgb(255, 51, 51)',
+            'rgb(255, 153, 51)',
+            'rgb(255, 255, 51)',
+            'rgb(51, 255, 51)',
+            'rgb(51, 51, 255)',
+            'rgb(153, 51, 255)',
+            'rgb(255, 51, 255)'
+        ];
+        
+        // 存储每个灯的当前颜色索引
+        const lightStates = [];
+        
+        // 存储定时器ID
+        let timerId = null;
+        
+        // DOM元素
+        const circleContainer = document.getElementById('circle-container');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        
+        // 圆的半径（根据容器大小调整）
+        const radius = 120;
+        
+        // 初始化霓虹灯
+        function initLights() {
+            circleContainer.innerHTML = '';
+            
+            // 创建7个霓虹灯并按圆形排列
+            for (let i = 0; i < 7; i++) {
+                // 计算角度（弧度制）
+                const angle = (i / 7) * Math.PI * 2;
+                
+                // 计算在圆上的位置
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                const light = document.createElement('div');
+                light.id = `light-${i}`;
+                light.className = `w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white shadow-lg light-transition light-shadow light-position`;
+                light.style.left = `calc(50% - 2rem)`; // 2rem = 32px (灯的宽度/2)
+                light.style.top = `calc(50% - 2rem)`;  // 2rem = 32px (灯的高度/2)
+                light.style.transform = `translate(${x}px, ${y}px)`;
+                
+                // 为每个灯设置初始颜色（确保各不相同）
+                const initialColorIndex = i;
+                lightStates[i] = initialColorIndex;
+                updateLightColor(light, initialColorIndex);
+                
+                circleContainer.appendChild(light);
+            }
+        }
+        
+        // 更新单个灯的颜色
+        function updateLightColor(light, colorIndex) {
+            // 移除之前的颜色类
+            light.classList.remove(...colors);
+            
+            // 添加新的颜色类和背景色
+            light.classList.add(colors[colorIndex]);
+            light.style.backgroundColor = rgbColors[colorIndex];
+            
+            // 更新灯内的文本
+            light.textContent = colorIndex + 1;
+        }
+        
+        // 随机化灯的颜色（确保每个时刻颜色各不相同）
+        function randomizeLights() {
+            // 创建一个包含0到6的数组并随机打乱
+            const shuffledColors = [...Array(7).keys()].sort(() => Math.random() - 0.5);
+            
+            // 为每个灯分配随机但唯一的颜色
+            for (let i = 0; i < 7; i++) {
+                const light = document.getElementById(`light-${i}`);
+                lightStates[i] = shuffledColors[i];
+                updateLightColor(light, shuffledColors[i]);
+            }
+        }
+        
+        // 切换到下一种颜色
+        function switchToNextColor() {
+            // 复制当前颜色状态用于检查唯一性
+            const currentColors = [...lightStates];
+            
+            // 为每个灯切换到下一种颜色
+            for (let i = 0; i < 7; i++) {
+                lightStates[i] = (lightStates[i] + 1) % 7;
+            }
+            
+            // 检查是否有重复颜色，如果有则调整
+            ensureUniqueColors();
+            
+            // 更新所有灯的颜色
+            for (let i = 0; i < 7; i++) {
+                const light = document.getElementById(`light-${i}`);
+                updateLightColor(light, lightStates[i]);
+            }
+        }
+        
+        // 确保所有灯的颜色是唯一的
+        function ensureUniqueColors() {
+            // 创建一个对象来跟踪每种颜色的数量
+            const colorCount = {};
+            colors.forEach((_, index) => {
+                colorCount[index] = 0;
+            });
+            
+            // 统计每种颜色的出现次数
+            lightStates.forEach(colorIndex => {
+                colorCount[colorIndex]++;
+            });
+            
+            // 找出重复的颜色和缺失的颜色
+            const duplicateColors = [];
+            const missingColors = [];
+            
+            for (let i = 0; i < 7; i++) {
+                if (colorCount[i] > 1) {
+                    duplicateColors.push(i);
+                } else if (colorCount[i] === 0) {
+                    missingColors.push(i);
+                }
+            }
+            
+            // 修复重复的颜色
+            let missingIndex = 0;
+            for (let i = 0; i < 7 && missingIndex < missingColors.length; i++) {
+                if (colorCount[lightStates[i]] > 1) {
+                    const oldColor = lightStates[i];
+                    const newColor = missingColors[missingIndex];
+                    
+                    // 更新颜色
+                    colorCount[oldColor]--;
+                    colorCount[newColor]++;
+                    lightStates[i] = newColor;
+                    
+                    // 检查是否解决了重复问题
+                    if (colorCount[oldColor] === 1) {
+                        duplicateColors.splice(duplicateColors.indexOf(oldColor), 1);
+                    }
+                    
+                    missingIndex++;
+                }
+            }
+        }
+        
+        // 开始动画
+        function startAnimation() {
+            if (timerId) {
+                clearInterval(timerId);
+            }
+            
+            // 初始随机化
+            randomizeLights();
+            
+            // 设置定时器，每1秒切换一次颜色
+            timerId = setInterval(switchToNextColor, 1000);
+            
+            // 更新按钮状态
+            startBtn.disabled = true;
+            startBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            stopBtn.disabled = false;
+            stopBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        
+        // 停止动画
+        function stopAnimation() {
+            if (timerId) {
+                clearInterval(timerId);
+                timerId = null;
+            }
+            
+            // 更新按钮状态
+            startBtn.disabled = false;
+            startBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            stopBtn.disabled = true;
+            stopBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+        
+        // 重置动画
+        function resetAnimation() {
+            stopAnimation();
+            initLights();
+        }
+        
+        // 事件监听
+        startBtn.addEventListener('click', startAnimation);
+        stopBtn.addEventListener('click', stopAnimation);
+        resetBtn.addEventListener('click', resetAnimation);
+        
+        // 初始化页面
+        window.addEventListener('DOMContentLoaded', () => {
+            initLights();
+            stopAnimation();
+            
+            // 响应式处理
+            function handleResize() {
+                // 根据屏幕宽度调整圆的大小
+                const containerWidth = Math.min(window.innerWidth * 0.7, 400);
+                circleContainer.style.width = `${containerWidth}px`;
+                circleContainer.style.height = `${containerWidth}px`;
+                
+                // 重新计算半径
+                const newRadius = containerWidth * 0.4;
+                
+                // 重新定位所有灯
+                for (let i = 0; i < 7; i++) {
+                    const angle = (i / 7) * Math.PI * 2;
+                    const x = Math.cos(angle) * newRadius;
+                    const y = Math.sin(angle) * newRadius;
+                    
+                    const light = document.getElementById(`light-${i}`);
+                    light.style.transform = `translate(${x}px, ${y}px)`;
+                }
+            }
+            
+            // 初始调整
+            handleResize();
+            
+            // 监听窗口大小变化
+            window.addEventListener('resize', handleResize);
+        });
+    </script>
+</body>
+</html>    
