@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机学生选择器</title>
+    <link rel="stylesheet" href="Lab8_2401_305_薛景文.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 font-sans">
+    <div class="max-w-3xl w-full bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl">
+        <header class="bg-blue-600 text-white p-6">
+            <h1 class="text-3xl font-bold text-center">随机学生选择器</h1>
+            <p class="text-center mt-2 opacity-90">点击开始按钮随机选择学生，点击停止确定最终人选</p>
+        </header>
+        
+        <main class="p-6">
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-3 text-gray-800">学生名单</h2>
+                <div id="studentList" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                </div>
+            </div>
+            
+            
+            <div class="flex justify-center space-x-4 mb-8">
+                <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400">
+                    <i class="fa fa-play mr-2"></i>开始
+                </button>
+                <button id="stopBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg shadow transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-400" disabled>
+                    <i class="fa fa-stop mr-2"></i>停止
+                </button>
+            </div>
+            
+            <div id="resultArea" class="bg-gray-50 rounded-lg p-6 text-center border-2 border-dashed border-gray-300 min-h-[120px] flex flex-col items-center justify-center transition-all duration-500">
+                <p class="text-gray-500 mb-2">选中的学生将显示在这里</p>
+                <div id="selectedStudent" class="text-xl font-bold text-gray-800 mt-2"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="Lab8_2401_305_薛景文.js"></script>
+</body>
+</html>    
