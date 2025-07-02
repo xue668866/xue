@@ -1,0 +1,18 @@
+
+{
+  "name": "fanqie-novel-website",
+  "version": "1.0.0",
+  "description": "番茄小说网仿站 - Node.js部署版本",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
